@@ -37,31 +37,38 @@ bool GameScene::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	m_pEngine = new NSEngine(this);
+	//create sprites
+	m_pMapSprites = new std::map<std::string,CCSprite*>();
+	std::string sPathHero = "sprites/hero/pacman.png";
+	CCSprite* p_pSprite = CCSprite::create(sPathHero);
+	p_pSprite->setPosition(440, 440);
+	p_pSprite->setScale(0.3);
+	(*m_pMapSprites)["HERO"] = p_pSprite;
+	addChild(p_pSprite);
+
+	m_pListPressedKey = new std::list<cocos2d::EventKeyboard::KeyCode>();
+	m_pListReleasedKey = new std::list<cocos2d::EventKeyboard::KeyCode>();
+
+	m_pEngine = new NSEngine(m_pMapSprites, m_pListPressedKey, m_pListReleasedKey);
 	
 	scheduleUpdate();
  }   
 
 void GameScene::keyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
-	
+	m_pListPressedKey->push_back(keyCode);
 }
 
 void GameScene::keyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
-	if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW) 
-	{
-		m_fMoveDirectionX = -1;
-	}
-	else if (keyCode == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW)
-	{
-		m_fMoveDirectionX = +1;
-	}
+	m_pListReleasedKey->push_back(keyCode);
 }
 
 void GameScene::update(float delta)
 {
 	m_pEngine->Update(delta);
+	m_pListPressedKey->clear();
+	m_pListReleasedKey->clear();
 }
 
 void GameScene::draw(Renderer* renderer, const kmMat4& transform, uint32_t transformUpdated)

@@ -3,15 +3,18 @@
 
 #include <vector>
 #include <list>
+#include <map>
 #include "NSSystem.h"
 
-//http://stackoverflow.com/questions/7665912/double-include-solution
-class GameScene; 
+#include "cocos2d.h"
+using namespace cocos2d;
 
 class NSEngine
 {
 public:
-	NSEngine(GameScene* gc);
+	NSEngine(std::map<std::string,CCSprite*>* p_pMapSprites,
+			std::list<cocos2d::EventKeyboard::KeyCode>* p_listPressedKey, 
+			std::list<cocos2d::EventKeyboard::KeyCode>* p_listReleasedKey);
 	void Add(NSSystem *p_pSystem);
 	void Update(float p_fDelta);
  

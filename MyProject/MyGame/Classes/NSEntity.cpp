@@ -1,5 +1,8 @@
 #include "NSEntity.h"
 
+NSEntity::NSEntity()
+{
+}
 
 void NSEntity::AddComponent(NSComponent* p_pComponent)
 {

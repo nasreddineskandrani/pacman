@@ -3,6 +3,9 @@
 
 #include "NSEngine.h"
 
+#include <list>
+#include <map>
+
 #include "cocos2d.h"
 using namespace cocos2d;
 
@@ -25,8 +28,13 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(GameScene);
 
+	static GameScene* me;
+
 private:
 	NSEngine* m_pEngine;
+	std::list<cocos2d::EventKeyboard::KeyCode>* m_pListPressedKey;
+	std::list<cocos2d::EventKeyboard::KeyCode>* m_pListReleasedKey;
+	std::map<std::string,CCSprite*>* m_pMapSprites;
 };
 
 #endif // __GAME_SCENE_H__

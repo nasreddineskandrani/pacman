@@ -4,6 +4,7 @@ NSInputActionComponent::NSInputActionComponent()
 	: NSComponent()
 {
 	m_listQueuedActions = new std::list<std::string>();
+	m_sType = "INPUT_ACTION";
 }
 
 std::string NSInputActionComponent::GetCurrentAction()
@@ -35,5 +36,8 @@ void NSInputActionComponent::Remove(std::string p_sAction)
 	}
 }	
 
-
+std::string NSInputActionComponent::GetType()
+{
+	return m_sType;
+}	
 

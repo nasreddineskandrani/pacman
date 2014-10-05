@@ -1,7 +1,14 @@
 #ifndef __GAME_SCENE_H__
 #define __GAME_SCENE_H__
 
-#include "NSEngine.h"
+//systems
+#include "NSGraphicSystem.h"
+#include "NSInputActionSystem.h"
+#include "NSMoveSystem.h"
+//components
+#include "NSRendererComponent.h"
+#include "NSInputActionComponent.h"
+#include "NSMoveComponent.h"
 
 #include <list>
 #include <map>
@@ -28,13 +35,12 @@ public:
     // implement the "static create()" method manually
     CREATE_FUNC(GameScene);
 
-	static GameScene* me;
-
 private:
-	NSEngine* m_pEngine;
 	std::list<cocos2d::EventKeyboard::KeyCode>* m_pListPressedKey;
 	std::list<cocos2d::EventKeyboard::KeyCode>* m_pListReleasedKey;
 	std::map<std::string,CCSprite*>* m_pMapSprites;
+	std::vector<NSSystem*> m_vSystems;
+	std::list<NSEntity*> m_lEntities; 
 };
 
 #endif // __GAME_SCENE_H__

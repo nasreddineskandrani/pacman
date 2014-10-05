@@ -6,10 +6,10 @@ NSEntity::NSEntity()
 
 void NSEntity::AddComponent(NSComponent* p_pComponent)
 {
-	m_components.push_back(p_pComponent);
+	m_mapComponents[p_pComponent->GetType()] = p_pComponent;
 }
 
-NSComponent* NSEntity::GetComponent(int id)
+NSComponent* NSEntity::GetComponent(std::string p_sId)
 {
-	return m_components[id];
+	return m_mapComponents[p_sId];
 }

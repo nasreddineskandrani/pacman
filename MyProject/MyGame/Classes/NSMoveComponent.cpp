@@ -4,6 +4,7 @@ NSMoveComponent::NSMoveComponent(CCSprite* p_pSprite)
 	: NSComponent()
 {
 	m_pSprite = p_pSprite;
+	m_sType = "MOVE";
 }
 
 void NSMoveComponent::Update(std::string p_sAction)
@@ -25,3 +26,9 @@ void NSMoveComponent::Update(std::string p_sAction)
 		m_pSprite->setPositionY(m_pSprite->getPositionY()+10);
 	}
 }	
+
+std::string NSMoveComponent::GetType()
+{
+	return m_sType;
+}	
+

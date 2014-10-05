@@ -37,7 +37,7 @@ bool GameScene::init()
 	Size visibleSize = Director::getInstance()->getVisibleSize();
 	Vec2 origin = Director::getInstance()->getVisibleOrigin();
 
-	//create sprites
+	////create sprites
 	m_pMapSprites = new std::map<std::string,CCSprite*>();
 	std::string sPathHero = "sprites/hero/pacman.png";
 	CCSprite* p_pSprite = CCSprite::create(sPathHero);
@@ -45,11 +45,45 @@ bool GameScene::init()
 	p_pSprite->setScale(0.3);
 	(*m_pMapSprites)["HERO"] = p_pSprite;
 	addChild(p_pSprite);
+	sPathHero = "sprites/hero/pacman.png";
+	p_pSprite = CCSprite::create(sPathHero);
+	p_pSprite->setPosition(580, 540);
+	p_pSprite->setScale(0.6);
+	(*m_pMapSprites)["SECOND_HERO"] = p_pSprite;
+	addChild(p_pSprite);
 
 	m_pListPressedKey = new std::list<cocos2d::EventKeyboard::KeyCode>();
 	m_pListReleasedKey = new std::list<cocos2d::EventKeyboard::KeyCode>();
 
-	m_pEngine = new NSEngine(m_pMapSprites, m_pListPressedKey, m_pListReleasedKey);
+	////create Enteties
+	NSEntity* pHero = new NSEntity();
+	NSRendererComponent* pHeroRendererComponent = new NSRendererComponent((*m_pMapSprites)["HERO"]);
+	NSInputActionComponent* pHeroInputActionComponent = new NSInputActionComponent();
+	NSMoveComponent* pHeroMoveComponent = new NSMoveComponent((*m_pMapSprites)["HERO"]);
+	//pHero->AddComponent(pHeroRendererComponent);
+	//pHero->AddComponent(pHeroInputActionComponent);
+	//pHero->AddComponent(pHeroMoveComponent);
+	NSEntity* pSecondHero = new NSEntity();
+	pHeroRendererComponent = new NSRendererComponent((*m_pMapSprites)["SECOND_HERO"]);
+	pHeroInputActionComponent = new NSInputActionComponent();
+	pHeroMoveComponent = new NSMoveComponent((*m_pMapSprites)["SECOND_HERO"]);
+	pSecondHero->AddComponent(pHeroRendererComponent);
+	pSecondHero->AddComponent(pHeroInputActionComponent);
+	pSecondHero->AddComponent(pHeroMoveComponent);
+	m_lEntities = std::list<NSEntity*>();
+	m_lEntities.push_back(pHero);
+	m_lEntities.push_back(pSecondHero);
+
+	////create Systems
+	//not needed be cause cocos2d.x draw auto the sprite
+	/* 
+	NSGraphicSystem* pGraphicSystem = new NSGraphicSystem(); 
+	Add(pGraphicSystem);
+	*/
+	NSInputActionSystem* pInputActionSystem = new NSInputActionSystem(m_pListPressedKey, m_pListReleasedKey); 
+	m_vSystems.push_back(pInputActionSystem);
+	NSMoveSystem* pMoveSystem = new NSMoveSystem(); 
+	m_vSystems.push_back(pMoveSystem);
 	
 	scheduleUpdate();
  }   
@@ -66,7 +100,16 @@ void GameScene::keyReleased(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Ev
 
 void GameScene::update(float delta)
 {
-	m_pEngine->Update(delta);
+	for(unsigned i = 0; i < m_vSystems.size( ); ++i)
+	{
+		m_vSystems[i]->Update(delta, m_lEntities);
+	}
+
+	for(unsigned i = 0; i < m_vSystems.size( ); ++i)
+	{
+		m_vSystems[i]->Clear(delta, m_lEntities);
+	}
+
 	m_pListPressedKey->clear();
 	m_pListReleasedKey->clear();
 }

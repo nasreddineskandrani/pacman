@@ -12,6 +12,7 @@ public:
 
 	void Update(std::string p_sAction);
 
+	std::string GetType();
 private:
 	CCSprite* m_pSprite;
 };

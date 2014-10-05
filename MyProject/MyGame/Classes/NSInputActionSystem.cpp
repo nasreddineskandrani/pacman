@@ -19,22 +19,26 @@ void NSInputActionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntiti
 			std::list<cocos2d::EventKeyboard::KeyCode>::iterator itrKey;
 			for (itrKey = m_listPressedKey->begin(); itrKey != m_listPressedKey->end(); ++itrKey) 
 			{ 
-				if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW) 
-				{	
-					((NSInputActionComponent*)(*itr)->GetComponent(1))->Push("MOVE_LEFT");
+				NSInputActionComponent* pInputActionComponent = (NSInputActionComponent*)(*itr)->GetComponent("INPUT_ACTION");
+				if (pInputActionComponent != NULL) 
+				{
+					if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW) 
+					{	
+						pInputActionComponent->Push("MOVE_LEFT");
+					}
+					else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW) 
+					{	
+						pInputActionComponent->Push("MOVE_RIGHT");
+					}	
+					else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW) 
+					{	
+						pInputActionComponent->Push("MOVE_UP");
+					}
+					else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW) 
+					{	
+						pInputActionComponent->Push("MOVE_DOWN");
+					}	
 				}
-				else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW) 
-				{	
-					((NSInputActionComponent*)(*itr)->GetComponent(1))->Push("MOVE_RIGHT");
-				}	
-				else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW) 
-				{	
-					((NSInputActionComponent*)(*itr)->GetComponent(1))->Push("MOVE_UP");
-				}
-				else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW) 
-				{	
-					((NSInputActionComponent*)(*itr)->GetComponent(1))->Push("MOVE_DOWN");
-				}	
 			}
 		}
 	}
@@ -47,25 +51,29 @@ void NSInputActionSystem::Clear(float p_fDelta, std::list<NSEntity*>& p_lEntitie
 	{
 		if (!m_listReleasedKey->empty())
 		{	
-			std::list<cocos2d::EventKeyboard::KeyCode>::iterator itrKey;
-			for (itrKey = m_listReleasedKey->begin(); itrKey != m_listReleasedKey->end(); ++itrKey) 
-			{ 
-				if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW) 
-				{	
-					((NSInputActionComponent*)(*itr)->GetComponent(1))->Remove("MOVE_LEFT");
+			NSInputActionComponent* pInputActionComponent = (NSInputActionComponent*)(*itr)->GetComponent("INPUT_ACTION");
+			if (pInputActionComponent != NULL) 
+			{
+				std::list<cocos2d::EventKeyboard::KeyCode>::iterator itrKey;
+				for (itrKey = m_listReleasedKey->begin(); itrKey != m_listReleasedKey->end(); ++itrKey) 
+				{ 
+					if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW) 
+					{	
+						pInputActionComponent->Remove("MOVE_LEFT");
+					}
+					else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW) 
+					{	
+						pInputActionComponent->Remove("MOVE_RIGHT");
+					}	
+					else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW) 
+					{	
+						pInputActionComponent->Remove("MOVE_UP");
+					}
+					else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW) 
+					{	
+						pInputActionComponent->Remove("MOVE_DOWN");
+					}	
 				}
-				else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_RIGHT_ARROW) 
-				{	
-					((NSInputActionComponent*)(*itr)->GetComponent(1))->Remove("MOVE_RIGHT");
-				}	
-				else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_UP_ARROW) 
-				{	
-					((NSInputActionComponent*)(*itr)->GetComponent(1))->Remove("MOVE_UP");
-				}
-				else if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_DOWN_ARROW) 
-				{	
-					((NSInputActionComponent*)(*itr)->GetComponent(1))->Remove("MOVE_DOWN");
-				}	
 			}
 		}
 	}

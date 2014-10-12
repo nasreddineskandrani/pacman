@@ -18,7 +18,7 @@ void NSMoveSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
 		NSInputActionComponent* pInputActionComponent = (NSInputActionComponent*)(*itr)->GetComponent("INPUT_ACTION");
 		if (pMoveComponent != NULL) 
 		{
-			pMoveComponent->Update(pInputActionComponent->GetCurrentAction());
+			pMoveComponent->Update(p_fDelta, pInputActionComponent->GetCurrentAction());
 		}
 	}
 }

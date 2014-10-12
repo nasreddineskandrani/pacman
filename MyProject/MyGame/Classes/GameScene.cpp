@@ -60,9 +60,9 @@ bool GameScene::init()
 	NSRendererComponent* pHeroRendererComponent = new NSRendererComponent((*m_pMapSprites)["HERO"]);
 	NSInputActionComponent* pHeroInputActionComponent = new NSInputActionComponent();
 	NSMoveComponent* pHeroMoveComponent = new NSMoveComponent((*m_pMapSprites)["HERO"]);
-	//pHero->AddComponent(pHeroRendererComponent);
-	//pHero->AddComponent(pHeroInputActionComponent);
-	//pHero->AddComponent(pHeroMoveComponent);
+	pHero->AddComponent(pHeroRendererComponent);
+	pHero->AddComponent(pHeroInputActionComponent);
+	pHero->AddComponent(pHeroMoveComponent);
 	NSEntity* pSecondHero = new NSEntity();
 	pHeroRendererComponent = new NSRendererComponent((*m_pMapSprites)["SECOND_HERO"]);
 	pHeroInputActionComponent = new NSInputActionComponent();

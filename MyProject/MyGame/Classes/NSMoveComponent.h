@@ -10,7 +10,7 @@ class NSMoveComponent : public NSComponent
 public:
 	NSMoveComponent(CCSprite* p_pSprite);
 
-	void Update(std::string p_sAction);
+	void Update(float p_fDelta, std::string p_sAction);
 
 	std::string GetType();
 private:

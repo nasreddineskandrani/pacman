@@ -1,5 +1,5 @@
 #include "GameScene.h"
-
+#include "NSEntityFactory.h"
 USING_NS_CC;
 
 Scene* GameScene::createScene()
@@ -27,61 +27,55 @@ bool GameScene::init()
         return false;
     }
 
+	Size visibleSize = Director::getInstance()->getVisibleSize();
+	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+
 	//keyboard handling 
 	//http://discuss.cocos2d-x.org/t/tutorial-how-to-get-multi-platform-keyboard-events/9893/7
 	auto keyboardListener = EventListenerKeyboard::create();
 	keyboardListener->onKeyPressed = CC_CALLBACK_2(GameScene::keyPressed, this);
 	keyboardListener->onKeyReleased = CC_CALLBACK_2(GameScene::keyReleased, this);
 	Director::getInstance()->getEventDispatcher()->addEventListenerWithSceneGraphPriority(keyboardListener, this);
-
-	Size visibleSize = Director::getInstance()->getVisibleSize();
-	Vec2 origin = Director::getInstance()->getVisibleOrigin();
+	
+	m_pListPressedKey = new std::list<cocos2d::EventKeyboard::KeyCode>();
+	m_pListReleasedKey = new std::list<cocos2d::EventKeyboard::KeyCode>();
 
 	////create sprites
 	m_pMapSprites = new std::map<std::string,CCSprite*>();
+
 	std::string sPathHero = "sprites/hero/pacman.png";
 	CCSprite* p_pSprite = CCSprite::create(sPathHero);
 	p_pSprite->setPosition(440, 440);
 	p_pSprite->setScale(0.3);
 	(*m_pMapSprites)["HERO"] = p_pSprite;
 	addChild(p_pSprite);
-	sPathHero = "sprites/hero/pacman.png";
-	p_pSprite = CCSprite::create(sPathHero);
+
+	std::string sPathEnemy1 = "sprites/enemies/enemy1.png";
+	p_pSprite = CCSprite::create(sPathEnemy1);
 	p_pSprite->setPosition(580, 540);
 	p_pSprite->setScale(0.6);
-	(*m_pMapSprites)["SECOND_HERO"] = p_pSprite;
+	(*m_pMapSprites)["Enemy1"] = p_pSprite;
 	addChild(p_pSprite);
 
-	m_pListPressedKey = new std::list<cocos2d::EventKeyboard::KeyCode>();
-	m_pListReleasedKey = new std::list<cocos2d::EventKeyboard::KeyCode>();
-
 	////create Enteties
-	NSEntity* pHero = new NSEntity();
-	NSRendererComponent* pHeroRendererComponent = new NSRendererComponent((*m_pMapSprites)["HERO"]);
-	NSInputActionComponent* pHeroInputActionComponent = new NSInputActionComponent();
-	NSMoveComponent* pHeroMoveComponent = new NSMoveComponent((*m_pMapSprites)["HERO"]);
-	pHero->AddComponent(pHeroRendererComponent);
-	pHero->AddComponent(pHeroInputActionComponent);
-	pHero->AddComponent(pHeroMoveComponent);
-	NSEntity* pSecondHero = new NSEntity();
-	pHeroRendererComponent = new NSRendererComponent((*m_pMapSprites)["SECOND_HERO"]);
-	pHeroInputActionComponent = new NSInputActionComponent();
-	pHeroMoveComponent = new NSMoveComponent((*m_pMapSprites)["SECOND_HERO"]);
-	pSecondHero->AddComponent(pHeroRendererComponent);
-	pSecondHero->AddComponent(pHeroInputActionComponent);
-	pSecondHero->AddComponent(pHeroMoveComponent);
+	NSEntity* pHero = NSEntityFactory::CreateHero((*m_pMapSprites)["HERO"]);
+	NSEntity* pSecondHero = NSEntityFactory::CreateEnemy((*m_pMapSprites)["Enemy1"]);
 	m_lEntities = std::list<NSEntity*>();
 	m_lEntities.push_back(pHero);
 	m_lEntities.push_back(pSecondHero);
-
+	 
 	////create Systems
-	//not needed be cause cocos2d.x draw auto the sprite
+	//not needed be cause cocos2d.x draw auto the sprite when addChild
 	/* 
 	NSGraphicSystem* pGraphicSystem = new NSGraphicSystem(); 
 	Add(pGraphicSystem);
 	*/
 	NSInputActionSystem* pInputActionSystem = new NSInputActionSystem(m_pListPressedKey, m_pListReleasedKey); 
 	m_vSystems.push_back(pInputActionSystem);
+	NSSpeedDirectionSystem* pSpeedDirectionSystem = new NSSpeedDirectionSystem(); 
+	m_vSystems.push_back(pSpeedDirectionSystem);
+	NSCollisionSystem* pCollisionSystem= new NSCollisionSystem(); 
+	m_vSystems.push_back(pCollisionSystem);
 	NSMoveSystem* pMoveSystem = new NSMoveSystem(); 
 	m_vSystems.push_back(pMoveSystem);
 	

@@ -4,6 +4,8 @@
 //systems
 #include "NSGraphicSystem.h"
 #include "NSInputActionSystem.h"
+#include "NSSpeedDirectionSystem.h"
+#include "NSCollisionSystem.h"
 #include "NSMoveSystem.h"
 //components
 #include "NSRendererComponent.h"

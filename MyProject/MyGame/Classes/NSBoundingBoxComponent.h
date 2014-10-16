@@ -5,14 +5,17 @@
 #include "cocos2d.h"
 using namespace cocos2d;
 
-class NSMoveComponent : public NSComponent
+class NSBoundingBoxComponent : public NSComponent
 {
 public:
-	NSMoveComponent(CCSprite* p_pSprite);
+	NSBoundingBoxComponent(CCSprite* p_pSprite);
 
-	void Update(float p_fDelta, int p_nDirectionX, int p_nDirectionY, int p_nSpeed);
+	void Update(float p_fDelta);
 
 	std::string GetType();
+
+	CCRect GetBoundingBox();
 private:
 	CCSprite* m_pSprite;
+	CCRect m_pBoundingBox;
 };

@@ -16,7 +16,11 @@ public:
 	int GetSpeed();
 	int GetDirectionX();
 	int GetDirectionY();
+	int GetCachedDirectionX();
+	int GetCachedDirectionY();
+	void SetCachedDirectionX(int);
+	void SetCachedDirectionY(int);
 
 private:
-	int m_nSpeed, m_nDirectionX, m_nDirectionY;
+	int m_nSpeed, m_nDirectionX, m_nDirectionY, m_nCachedDirectionX, m_nCachedDirectionY;
 };

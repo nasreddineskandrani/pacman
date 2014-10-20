@@ -40,7 +40,6 @@ public:
 private:
 	std::list<cocos2d::EventKeyboard::KeyCode>* m_pListPressedKey;
 	std::list<cocos2d::EventKeyboard::KeyCode>* m_pListReleasedKey;
-	std::map<std::string,CCSprite*>* m_pMapSprites;
 	std::vector<NSSystem*> m_vSystems;
 	std::list<NSEntity*> m_lEntities; 
 };

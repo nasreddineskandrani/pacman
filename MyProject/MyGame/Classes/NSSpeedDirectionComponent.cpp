@@ -3,9 +3,12 @@
 NSSpeedDirectionComponent::NSSpeedDirectionComponent()
 	: NSComponent()
 {
-	m_nSpeed = +400;
+	//m_nSpeed = +180+20;
+	m_nSpeed = +150;
 	m_nDirectionX = 0;
 	m_nDirectionY = 0;
+	m_nCachedDirectionX = 22;
+	m_nCachedDirectionY = 22;
 	m_sType = "SPEED_DIRECTION";
 }
 
@@ -58,3 +61,22 @@ int NSSpeedDirectionComponent::GetDirectionY()
 	return m_nDirectionY;
 }	
 
+int NSSpeedDirectionComponent::GetCachedDirectionX()
+{
+	return m_nCachedDirectionX;
+}	
+
+int NSSpeedDirectionComponent::GetCachedDirectionY()
+{
+	return m_nCachedDirectionY;
+}	
+
+void NSSpeedDirectionComponent::SetCachedDirectionX(int value)
+{
+	m_nCachedDirectionX = value;
+}	
+
+void NSSpeedDirectionComponent::SetCachedDirectionY(int value)
+{
+	m_nCachedDirectionY = value;
+}	

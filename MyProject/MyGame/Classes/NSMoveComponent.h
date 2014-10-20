@@ -10,9 +10,11 @@ class NSMoveComponent : public NSComponent
 public:
 	NSMoveComponent(CCSprite* p_pSprite);
 
-	void Update(float p_fDelta, int p_nDirectionX, int p_nDirectionY, int p_nSpeed);
+	void Update(float p_fDelta, int p_nDirectionX, int p_nDirectionY, int p_nSpeed, int p_nWantedIndexW, int p_nWantedIndexH);
 
 	std::string GetType();
+	CCSprite* GetSprite();
 private:
 	CCSprite* m_pSprite;
+	int p_nCachedDirectionX, p_nCachedDirectionY;
 };

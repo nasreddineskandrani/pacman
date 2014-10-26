@@ -16,6 +16,8 @@ public:
 	int GetSpeed();
 	int GetDirectionX();
 	int GetDirectionY();
+	void SetDirectionX(int value);
+	void SetDirectionY(int value);
 	int GetCachedDirectionX();
 	int GetCachedDirectionY();
 	void SetCachedDirectionX(int);

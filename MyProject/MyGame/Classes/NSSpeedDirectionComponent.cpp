@@ -61,6 +61,16 @@ int NSSpeedDirectionComponent::GetDirectionY()
 	return m_nDirectionY;
 }	
 
+void NSSpeedDirectionComponent::SetDirectionX(int value)
+{
+	m_nDirectionX = value;
+}	
+
+void NSSpeedDirectionComponent::SetDirectionY(int value)
+{
+	m_nDirectionY = value;
+}	
+
 int NSSpeedDirectionComponent::GetCachedDirectionX()
 {
 	return m_nCachedDirectionX;

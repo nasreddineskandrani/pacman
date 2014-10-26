@@ -5,6 +5,7 @@ NSMapIndexComponent::NSMapIndexComponent(int p_nIndexW, int p_nIndexH)
 {
 	m_nIndexW = p_nIndexW;
 	m_nIndexH = p_nIndexH;
+
 	m_sType = "MAP_INDEX";
 }
 

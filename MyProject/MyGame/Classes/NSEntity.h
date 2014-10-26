@@ -16,7 +16,10 @@ public:
 	void AddComponent(NSComponent* p_pComponent);
 	void RemoveComponent(NSComponent* p_pComponent);
 
+	inline std::string GetTypeName() { return m_sTypeName; };
+	inline void SetTypeName(std::string p_sTypeName) { m_sTypeName = p_sTypeName; };
  
 private:
   std::map<std::string,NSComponent*> m_mapComponents;
+  std::string m_sTypeName;
 };

@@ -15,69 +15,83 @@ NSEntity* NSEntityFactory::CreateHero(CCSprite* p_pSprite, int p_nIndexW, int p_
 	pHero->AddComponent(pSpeedDirectionComponent);
 	pHero->AddComponent(pBoundingBoxComponent);
 	pHero->AddComponent(pHeroMoveComponent);
+	pHero->SetTypeName("HERO");
 	return pHero;
 }
 
 NSEntity* NSEntityFactory::CreateEnemy(CCSprite* p_pSprite, int p_nIndexW, int p_nIndexH)
 {
 	NSEntity* pEnemy = new NSEntity();
+	NSMapIndexComponent* pMapIndexComponent = new NSMapIndexComponent(p_nIndexW, p_nIndexH);
 	NSRendererComponent* pEnemyRendererComponent = new NSRendererComponent(p_pSprite);
 	NSInputActionComponent* pEnemyInputActionComponent = new NSInputActionComponent();
 	NSSpeedDirectionComponent* pEnemySpeedDirectionComponent = new NSSpeedDirectionComponent();
 	NSBoundingBoxComponent* pEnemyBoundingBoxComponent = new NSBoundingBoxComponent(p_pSprite);
 	NSMoveComponent* pEnemyMoveComponent = new NSMoveComponent(p_pSprite);
 	//pEnemy->AddComponent(pEnemyRendererComponent);
+	pEnemy->AddComponent(pMapIndexComponent);
 	//pEnemy->AddComponent(pEnemyInputActionComponent);
 	//pEnemy->AddComponent(pEnemySpeedDirectionComponent);
 	pEnemy->AddComponent(pEnemyBoundingBoxComponent);
 	//pEnemy->AddComponent(pEnemyMoveComponent);
+	pEnemy->SetTypeName("GHOST");
 	return pEnemy;
 }
 
 NSEntity* NSEntityFactory::CreateWall(CCSprite* p_pSprite, int p_nIndexW, int p_nIndexH)
 {
 	NSEntity* pEnemy = new NSEntity();
+	NSMapIndexComponent* pMapIndexComponent = new NSMapIndexComponent(p_nIndexW, p_nIndexH);
 	NSRendererComponent* pEnemyRendererComponent = new NSRendererComponent(p_pSprite);
 	NSInputActionComponent* pEnemyInputActionComponent = new NSInputActionComponent();
 	NSSpeedDirectionComponent* pEnemySpeedDirectionComponent = new NSSpeedDirectionComponent();
 	NSBoundingBoxComponent* pEnemyBoundingBoxComponent = new NSBoundingBoxComponent(p_pSprite);
 	NSMoveComponent* pEnemyMoveComponent = new NSMoveComponent(p_pSprite);
 	//pEnemy->AddComponent(pEnemyRendererComponent);
+	pEnemy->AddComponent(pMapIndexComponent);
 	//pEnemy->AddComponent(pEnemyInputActionComponent);
 	//pEnemy->AddComponent(pEnemySpeedDirectionComponent);
 	pEnemy->AddComponent(pEnemyBoundingBoxComponent);
 	//pEnemy->AddComponent(pEnemyMoveComponent);
+	pEnemy->SetTypeName("WALL");
 	return pEnemy;
 }
 
 NSEntity* NSEntityFactory::CreateEmpty(CCSprite* p_pSprite, int p_nIndexW, int p_nIndexH)
 {
 	NSEntity* pEnemy = new NSEntity();
+	NSMapIndexComponent* pMapIndexComponent = new NSMapIndexComponent(p_nIndexW, p_nIndexH);
 	NSRendererComponent* pEnemyRendererComponent = new NSRendererComponent(p_pSprite);
 	NSInputActionComponent* pEnemyInputActionComponent = new NSInputActionComponent();
 	NSSpeedDirectionComponent* pEnemySpeedDirectionComponent = new NSSpeedDirectionComponent();
 	NSBoundingBoxComponent* pEnemyBoundingBoxComponent = new NSBoundingBoxComponent(p_pSprite);
 	NSMoveComponent* pEnemyMoveComponent = new NSMoveComponent(p_pSprite);
 	//pEnemy->AddComponent(pEnemyRendererComponent);
+	pEnemy->AddComponent(pMapIndexComponent);
 	//pEnemy->AddComponent(pEnemyInputActionComponent);
 	//pEnemy->AddComponent(pEnemySpeedDirectionComponent);
 	pEnemy->AddComponent(pEnemyBoundingBoxComponent);
 	//pEnemy->AddComponent(pEnemyMoveComponent);
+	pEnemy->SetTypeName("EMPTY");
 	return pEnemy;
 }
-
+/*
 NSEntity* NSEntityFactory::CreatePill(CCSprite* p_pSprite)
 {
 	NSEntity* pEnemy = new NSEntity();
+	NSMapIndexComponent* pMapIndexComponent = new NSMapIndexComponent(p_nIndexW, p_nIndexH);
 	NSRendererComponent* pEnemyRendererComponent = new NSRendererComponent(p_pSprite);
 	NSInputActionComponent* pEnemyInputActionComponent = new NSInputActionComponent();
 	NSSpeedDirectionComponent* pEnemySpeedDirectionComponent = new NSSpeedDirectionComponent();
 	NSBoundingBoxComponent* pEnemyBoundingBoxComponent = new NSBoundingBoxComponent(p_pSprite);
 	NSMoveComponent* pEnemyMoveComponent = new NSMoveComponent(p_pSprite);
 	//pEnemy->AddComponent(pEnemyRendererComponent);
+	pEnemy->AddComponent(pMapIndexComponent);
 	//pEnemy->AddComponent(pEnemyInputActionComponent);
 	//pEnemy->AddComponent(pEnemySpeedDirectionComponent);
 	pEnemy->AddComponent(pEnemyBoundingBoxComponent);
 	//pEnemy->AddComponent(pEnemyMoveComponent);
+	pEnemy->SetTypeName("PILL");
 	return pEnemy;
 }
+*/

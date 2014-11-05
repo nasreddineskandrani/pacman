@@ -25,15 +25,16 @@ NSEntity* NSEntityFactory::CreateEnemy(CCSprite* p_pSprite, int p_nIndexW, int p
 	NSMapIndexComponent* pMapIndexComponent = new NSMapIndexComponent(p_nIndexW, p_nIndexH);
 	NSRendererComponent* pEnemyRendererComponent = new NSRendererComponent(p_pSprite);
 	NSInputActionComponent* pEnemyInputActionComponent = new NSInputActionComponent();
+	NSIAActionComponent* pEnemyIAActionComponent = new NSIAActionComponent();
 	NSSpeedDirectionComponent* pEnemySpeedDirectionComponent = new NSSpeedDirectionComponent();
 	NSBoundingBoxComponent* pEnemyBoundingBoxComponent = new NSBoundingBoxComponent(p_pSprite);
 	NSMoveComponent* pEnemyMoveComponent = new NSMoveComponent(p_pSprite);
 	//pEnemy->AddComponent(pEnemyRendererComponent);
 	pEnemy->AddComponent(pMapIndexComponent);
-	//pEnemy->AddComponent(pEnemyInputActionComponent);
-	//pEnemy->AddComponent(pEnemySpeedDirectionComponent);
+	pEnemy->AddComponent(pEnemyIAActionComponent);
+	pEnemy->AddComponent(pEnemySpeedDirectionComponent);
 	pEnemy->AddComponent(pEnemyBoundingBoxComponent);
-	//pEnemy->AddComponent(pEnemyMoveComponent);
+	pEnemy->AddComponent(pEnemyMoveComponent);
 	pEnemy->SetTypeName("GHOST");
 	return pEnemy;
 }

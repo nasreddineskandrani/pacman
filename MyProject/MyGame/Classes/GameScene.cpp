@@ -97,7 +97,7 @@ bool GameScene::init()
 	std::string sPathEnemy1 = "sprites/enemy1.png";
 	p_pSprite = CCSprite::create(sPathEnemy1);
 	addChild(p_pSprite);
-	NSEntity* pEnemy1 = NSEntityFactory::CreateEnemy(p_pSprite, 10, 5);
+	NSEntity* pEnemy1 = NSEntityFactory::CreateEnemy(p_pSprite, 10, 8);
 	p_pSprite->setPosition((10*size) + size/2, (8*size) + size/2);
 	m_lEntities.push_back(pEnemy1);
 
@@ -132,6 +132,8 @@ bool GameScene::init()
 	*/
 	NSInputActionSystem* pInputActionSystem = new NSInputActionSystem(m_pListPressedKey, m_pListReleasedKey); 
 	m_vSystems.push_back(pInputActionSystem);
+	NSIAActionSystem* pIAActionSystem = new NSIAActionSystem(); 
+	m_vSystems.push_back(pIAActionSystem);
 	NSSpeedDirectionSystem* pSpeedDirectionSystem = new NSSpeedDirectionSystem(); 
 	m_vSystems.push_back(pSpeedDirectionSystem);
 	NSCollisionSystem* pCollisionSystem= new NSCollisionSystem(); 
@@ -144,7 +146,7 @@ bool GameScene::init()
 
 void GameScene::keyPressed(cocos2d::EventKeyboard::KeyCode keyCode, cocos2d::Event *event)
 {
-	CCLog("test");
+	//CCLog("test");
 	m_pListPressedKey->push_back(keyCode);
 }
 

@@ -3,6 +3,7 @@
 //components
 #include "NSRendererComponent.h"
 #include "NSInputActionComponent.h"
+#include "NSIAActionComponent.h"
 #include "NSSpeedDirectionComponent.h"
 #include "NSBoundingBoxComponent.h"
 #include "NSMoveComponent.h"

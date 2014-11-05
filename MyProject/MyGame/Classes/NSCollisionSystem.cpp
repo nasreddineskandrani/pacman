@@ -87,6 +87,8 @@ void NSCollisionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities
 						pSpeedDirectionComponent->SetDirectionX(0);
 						pSpeedDirectionComponent->SetDirectionY(0);
 					}
+
+				
 				}
 			}
 		}

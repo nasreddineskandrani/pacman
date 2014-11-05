@@ -7,6 +7,7 @@
 #include "NSSpeedDirectionSystem.h"
 #include "NSCollisionSystem.h"
 #include "NSMoveSystem.h"
+#include "NSIAActionSystem.h"
 //components
 #include "NSRendererComponent.h"
 #include "NSInputActionComponent.h"

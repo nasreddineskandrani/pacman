@@ -51,10 +51,10 @@ bool GameScene::init()
 							"100000111111111100000001"
 							"100000000000000000000001"
 							"101111111111111111111101"
-							"100000000000000000000001"
+							"1000000000pp000000000001"
 							"101111111111111111111101"
-							"100010000001100011000001"
-							"100000011000001000001001" 
+							"100010000001100p11000001"
+							"100000p11000001000001001" 
 							"111111111111111111111111" ;
 
 	int size = 40;
@@ -81,6 +81,23 @@ bool GameScene::init()
 				addChild(p_pSprite);
 				NSEntity* pEmpty = NSEntityFactory::CreateEmpty(p_pSprite, j, i);;
 				m_lEntities.push_back(pEmpty);
+			}
+			else
+			if ( sMap1.at(k) == 'p')
+			{
+				std::string sPathEmpty = "sprites/empty.png";
+				CCSprite* p_pSprite = p_pSprite = CCSprite::create(sPathEmpty);
+				p_pSprite->setPosition((j*size) + size/2, (i*size) + size/2);
+				addChild(p_pSprite);
+				NSEntity* pEmpty = NSEntityFactory::CreateEmpty(p_pSprite, j, i);;
+				m_lEntities.push_back(pEmpty);
+
+				std::string sPathWall = "sprites/pill.png";
+				CCSprite* p_pSprite2 = p_pSprite = CCSprite::create(sPathWall);
+				p_pSprite2->setPosition((j*size) + size/2, i*size + size/2);
+				addChild(p_pSprite2);
+				NSEntity* pWall = NSEntityFactory::CreatePill(p_pSprite2, j, i);
+				m_lEntities.push_back(pWall);
 			}
 			k++;
 		}

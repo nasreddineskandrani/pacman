@@ -87,7 +87,12 @@ void NSCollisionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities
 						pSpeedDirectionComponent->SetDirectionX(0);
 						pSpeedDirectionComponent->SetDirectionY(0);
 					}
-
+					else 
+					if ((*itrSearchCollision)->GetTypeName() == "PILL")
+					{
+						NSMoveComponent* pMoveComponent = (NSMoveComponent*)(*itrSearchCollision)->GetComponent("MOVE");
+						pMoveComponent->GetSprite()->setVisible(false);
+					}
 				
 				}
 			}

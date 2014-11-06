@@ -19,5 +19,5 @@ public:
 	static NSEntity* CreateEnemy(CCSprite* p_pSprite, int p_nIndexW, int p_nIndexH);
 	static NSEntity* CreateEmpty(CCSprite* p_pSprite, int p_nIndexW, int p_nIndexH);
 	static NSEntity* CreateWall(CCSprite* p_pSprite, int p_nIndexW, int p_nIndexH);
-	static NSEntity* CreatePill(CCSprite* p_pSprite);
+	static NSEntity* CreatePill(CCSprite* p_pSprite, int p_nIndexW, int p_nIndexH);
 };

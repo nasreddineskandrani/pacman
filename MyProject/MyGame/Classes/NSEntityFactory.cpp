@@ -76,8 +76,8 @@ NSEntity* NSEntityFactory::CreateEmpty(CCSprite* p_pSprite, int p_nIndexW, int p
 	pEnemy->SetTypeName("EMPTY");
 	return pEnemy;
 }
-/*
-NSEntity* NSEntityFactory::CreatePill(CCSprite* p_pSprite)
+
+NSEntity* NSEntityFactory::CreatePill(CCSprite* p_pSprite, int p_nIndexW, int p_nIndexH)
 {
 	NSEntity* pEnemy = new NSEntity();
 	NSMapIndexComponent* pMapIndexComponent = new NSMapIndexComponent(p_nIndexW, p_nIndexH);
@@ -90,9 +90,8 @@ NSEntity* NSEntityFactory::CreatePill(CCSprite* p_pSprite)
 	pEnemy->AddComponent(pMapIndexComponent);
 	//pEnemy->AddComponent(pEnemyInputActionComponent);
 	//pEnemy->AddComponent(pEnemySpeedDirectionComponent);
-	pEnemy->AddComponent(pEnemyBoundingBoxComponent);
-	//pEnemy->AddComponent(pEnemyMoveComponent);
+	//pEnemy->AddComponent(pEnemyBoundingBoxComponent);
+	pEnemy->AddComponent(pEnemyMoveComponent);
 	pEnemy->SetTypeName("PILL");
 	return pEnemy;
 }
-*/

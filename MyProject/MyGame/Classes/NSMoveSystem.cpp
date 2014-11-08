@@ -49,10 +49,22 @@ void NSMoveSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
 					float nNextPositionW = pMoveComponent->GetSprite()->getPositionX()+nDirectionX*nSpeed*p_fDelta;
 					if (nNextPositionW > nWantedPositionW)
 					{
-						pMapIndexComponent->SetIndexW(pMapIndexComponent->GetIndexW()+nDirectionX);
-						pMoveComponent->GetSprite()->setPositionX(nWantedPositionW);
-						pSpeedDirectionComponent->SetCachedDirectionX(22);
-						pSpeedDirectionComponent->SetCachedDirectionY(22);
+						//if same direction pressed dont clip
+						if (pSpeedDirectionComponent->GetDirectionX() != pSpeedDirectionComponent->GetCachedDirectionX()
+							&& pSpeedDirectionComponent->GetDirectionX() != 0) 
+						{
+							pMapIndexComponent->SetIndexW(pMapIndexComponent->GetIndexW()+nDirectionX);
+							pMoveComponent->GetSprite()->setPositionX(nNextPositionW);
+							pSpeedDirectionComponent->SetCachedDirectionX(22);
+							pSpeedDirectionComponent->SetCachedDirectionY(22);
+						}
+						else 
+						{
+							pMapIndexComponent->SetIndexW(pMapIndexComponent->GetIndexW()+nDirectionX);
+							pMoveComponent->GetSprite()->setPositionX(nWantedPositionW);
+							pSpeedDirectionComponent->SetCachedDirectionX(22);
+							pSpeedDirectionComponent->SetCachedDirectionY(22);
+						}
 					}
 					else 
 					{
@@ -66,10 +78,21 @@ void NSMoveSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
 					float nNextPositionW = pMoveComponent->GetSprite()->getPositionX()+nDirectionX*nSpeed*p_fDelta;
 					if (nNextPositionW < nWantedPositionW)
 					{
-						pMapIndexComponent->SetIndexW(pMapIndexComponent->GetIndexW()+nDirectionX);
-						pMoveComponent->GetSprite()->setPositionX(nWantedPositionW);
-						pSpeedDirectionComponent->SetCachedDirectionX(22);
-						pSpeedDirectionComponent->SetCachedDirectionY(22);
+						if (pSpeedDirectionComponent->GetDirectionX() != pSpeedDirectionComponent->GetCachedDirectionX()
+							&& pSpeedDirectionComponent->GetDirectionX() != 0) 
+						{
+							pMapIndexComponent->SetIndexW(pMapIndexComponent->GetIndexW()+nDirectionX);
+							pMoveComponent->GetSprite()->setPositionX(nNextPositionW);
+							pSpeedDirectionComponent->SetCachedDirectionX(22);
+							pSpeedDirectionComponent->SetCachedDirectionY(22);
+						}
+						else 
+						{
+							pMapIndexComponent->SetIndexW(pMapIndexComponent->GetIndexW()+nDirectionX);
+							pMoveComponent->GetSprite()->setPositionX(nWantedPositionW);
+							pSpeedDirectionComponent->SetCachedDirectionX(22);
+							pSpeedDirectionComponent->SetCachedDirectionY(22);
+						}
 					}
 					else 
 					{
@@ -87,10 +110,21 @@ void NSMoveSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
 					float nNextPositionH = pMoveComponent->GetSprite()->getPositionY()+nDirectionY*nSpeed*p_fDelta;
 					if (nNextPositionH > nWantedPositionH)
 					{
-						pMapIndexComponent->SetIndexH(pMapIndexComponent->GetIndexH()+nDirectionY);
-						pMoveComponent->GetSprite()->setPositionY(nWantedPositionH);
-						pSpeedDirectionComponent->SetCachedDirectionX(22);
-						pSpeedDirectionComponent->SetCachedDirectionY(22);
+						if (pSpeedDirectionComponent->GetDirectionY() != pSpeedDirectionComponent->GetCachedDirectionY()
+							&& pSpeedDirectionComponent->GetDirectionY() != 0) 
+						{
+							pMapIndexComponent->SetIndexH(pMapIndexComponent->GetIndexH()+nDirectionY);
+							pMoveComponent->GetSprite()->setPositionY(nNextPositionH);
+							pSpeedDirectionComponent->SetCachedDirectionX(22);
+							pSpeedDirectionComponent->SetCachedDirectionY(22);
+						}
+						else 
+						{
+							pMapIndexComponent->SetIndexH(pMapIndexComponent->GetIndexH()+nDirectionY);
+							pMoveComponent->GetSprite()->setPositionY(nWantedPositionH);
+							pSpeedDirectionComponent->SetCachedDirectionX(22);
+							pSpeedDirectionComponent->SetCachedDirectionY(22);
+						}
 					}
 					else 
 					{
@@ -104,11 +138,21 @@ void NSMoveSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
 					float nNextPositionH = pMoveComponent->GetSprite()->getPositionY()+nDirectionY*nSpeed*p_fDelta;
 					if (nNextPositionH < nWantedPositionH)
 					{
-						pMapIndexComponent->SetIndexH(pMapIndexComponent->GetIndexH()+nDirectionY);
-						pMoveComponent->GetSprite()->setPositionY(nWantedPositionH);
-
-						pSpeedDirectionComponent->SetCachedDirectionX(22);
-						pSpeedDirectionComponent->SetCachedDirectionY(22);
+						if (pSpeedDirectionComponent->GetDirectionY() != pSpeedDirectionComponent->GetCachedDirectionY()
+							&& pSpeedDirectionComponent->GetDirectionY() != 0) 
+						{
+							pMapIndexComponent->SetIndexH(pMapIndexComponent->GetIndexH()+nDirectionY);
+							pMoveComponent->GetSprite()->setPositionY(nNextPositionH);
+							pSpeedDirectionComponent->SetCachedDirectionX(22);
+							pSpeedDirectionComponent->SetCachedDirectionY(22);
+						}
+						else 
+						{
+							pMapIndexComponent->SetIndexH(pMapIndexComponent->GetIndexH()+nDirectionY);
+							pMoveComponent->GetSprite()->setPositionY(nWantedPositionH);
+							pSpeedDirectionComponent->SetCachedDirectionX(22);
+							pSpeedDirectionComponent->SetCachedDirectionY(22);
+						}
 					}
 					else 
 					{

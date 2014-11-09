@@ -9,17 +9,16 @@ NSInputActionSystem::NSInputActionSystem(std::list<cocos2d::EventKeyboard::KeyCo
 	m_listReleasedKey = p_listReleasedKey;
 }
 
-void NSInputActionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
+void NSInputActionSystem::Update(float p_fDelta, std::vector<NSEntity*>& p_lEntities)
 {
-	std::list<NSEntity*>::iterator itr;
-	for (itr = p_lEntities.begin(); itr != p_lEntities.end(); ++itr) 
+	for (int i = 0; i < p_lEntities.size(); ++i) 
 	{
 		if (!m_listPressedKey->empty())
 		{	
 			std::list<cocos2d::EventKeyboard::KeyCode>::iterator itrKey;
 			for (itrKey = m_listPressedKey->begin(); itrKey != m_listPressedKey->end(); ++itrKey) 
 			{ 
-				NSInputActionComponent* pInputActionComponent = (NSInputActionComponent*)(*itr)->GetComponent("INPUT_ACTION");
+				NSInputActionComponent* pInputActionComponent = (NSInputActionComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eInputAction);
 				if (pInputActionComponent != NULL) 
 				{
 					if ((*itrKey) == cocos2d::EventKeyboard::KeyCode::KEY_LEFT_ARROW) 
@@ -44,14 +43,13 @@ void NSInputActionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntiti
 	}
 }
 
-void NSInputActionSystem::Clear(float p_fDelta, std::list<NSEntity*>& p_lEntities)
+void NSInputActionSystem::Clear(float p_fDelta, std::vector<NSEntity*>& p_lEntities)
 {
-	std::list<NSEntity*>::iterator itr;
-	for (itr = p_lEntities.begin(); itr != p_lEntities.end(); ++itr) 
+	for (int i = 0; i < p_lEntities.size(); ++i) 
 	{
 		if (!m_listReleasedKey->empty())
 		{	
-			NSInputActionComponent* pInputActionComponent = (NSInputActionComponent*)(*itr)->GetComponent("INPUT_ACTION");
+			NSInputActionComponent* pInputActionComponent = (NSInputActionComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eInputAction);
 			if (pInputActionComponent != NULL) 
 			{
 				std::list<cocos2d::EventKeyboard::KeyCode>::iterator itrKey;

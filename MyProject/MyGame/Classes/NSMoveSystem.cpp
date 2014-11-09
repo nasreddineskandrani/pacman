@@ -10,16 +10,21 @@ NSMoveSystem::NSMoveSystem()
 
 }
 
-void NSMoveSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
+void NSMoveSystem::Update(float p_fDelta, std::vector<NSEntity*>& p_lEntities)
 {
 	std::list<NSEntity*>::iterator itr;
-	for (itr = p_lEntities.begin(); itr != p_lEntities.end(); ++itr) 
+	NSSpeedDirectionComponent* pSpeedDirectionComponent;
+	NSMoveComponent* pMoveComponent;
+	NSMapIndexComponent* pMapIndexComponent;
+	for (int i = 0; i < p_lEntities.size(); ++i) 
 	{
-		NSSpeedDirectionComponent* pSpeedDirectionComponent = (NSSpeedDirectionComponent*)(*itr)->GetComponent("SPEED_DIRECTION");
-		NSMoveComponent* pMoveComponent = (NSMoveComponent*)(*itr)->GetComponent("MOVE");
-		NSMapIndexComponent* pMapIndexComponent = (NSMapIndexComponent*)(*itr)->GetComponent("MAP_INDEX");
+		pSpeedDirectionComponent = (NSSpeedDirectionComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eSpeedDirection);
+		pMoveComponent = (NSMoveComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eMove);
+		pMapIndexComponent = (NSMapIndexComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eMapIndex);
+		
 		if (pSpeedDirectionComponent != NULL && pMoveComponent != NULL && pMapIndexComponent != NULL) 
 		{
+			
 			int nSpeed = pSpeedDirectionComponent->GetSpeed();
 
 			//use cache for direction if present

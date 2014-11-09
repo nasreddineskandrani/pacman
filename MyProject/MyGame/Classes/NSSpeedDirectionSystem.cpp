@@ -11,16 +11,18 @@ NSSpeedDirectionSystem::NSSpeedDirectionSystem()
 
 }
 
-void NSSpeedDirectionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
+void NSSpeedDirectionSystem::Update(float p_fDelta, std::vector<NSEntity*>& p_lEntities)
 {
-	std::list<NSEntity*>::iterator itr;
-	for (itr = p_lEntities.begin(); itr != p_lEntities.end(); ++itr) 
+	NSSpeedDirectionComponent* pSpeedDirectionComponent;
+	NSMapIndexComponent* pMapIndexComponent;
+	NSInputActionComponent* pInputActionComponent;
+	NSIAActionComponent* pIAActionComponent;
+	for (int i = 0; i < p_lEntities.size(); ++i) 
 	{
-
-		NSSpeedDirectionComponent* pSpeedDirectionComponent = (NSSpeedDirectionComponent*)(*itr)->GetComponent("SPEED_DIRECTION");
-		NSMapIndexComponent* pMapIndexComponent = (NSMapIndexComponent*)(*itr)->GetComponent("MAP_INDEX");
-		NSInputActionComponent* pInputActionComponent = (NSInputActionComponent*)(*itr)->GetComponent("INPUT_ACTION");
-		NSIAActionComponent* pIAActionComponent = (NSIAActionComponent*)(*itr)->GetComponent("IA_ACTION");
+		pSpeedDirectionComponent = (NSSpeedDirectionComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eSpeedDirection);
+		pMapIndexComponent = (NSMapIndexComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eMapIndex);
+		pInputActionComponent = (NSInputActionComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eInputAction);
+		pIAActionComponent = (NSIAActionComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eIAAction);
 		if (pSpeedDirectionComponent != NULL && pInputActionComponent != NULL) 
 		{
 			pSpeedDirectionComponent->Update(p_fDelta, pInputActionComponent->GetCurrentAction());

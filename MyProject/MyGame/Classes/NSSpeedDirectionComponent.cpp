@@ -4,12 +4,12 @@ NSSpeedDirectionComponent::NSSpeedDirectionComponent()
 	: NSComponent()
 {
 	//m_nSpeed = +180+20;
-	m_nSpeed = +120;
+	m_nSpeed = +150;
 	m_nDirectionX = 0;
 	m_nDirectionY = 0;
 	m_nCachedDirectionX = 22;
 	m_nCachedDirectionY = 22;
-	m_sType = "SPEED_DIRECTION";
+	m_eType = NSComponent::ComponentType::eType::eSpeedDirection;
 }
 
 void NSSpeedDirectionComponent::Update(float p_fDelta, std::string p_sAction)
@@ -41,9 +41,9 @@ void NSSpeedDirectionComponent::Update(float p_fDelta, std::string p_sAction)
 	}	
 }	
 
-std::string NSSpeedDirectionComponent::GetType()
+NSComponent::ComponentType::eType NSSpeedDirectionComponent::GetType()
 {
-	return m_sType;
+	return m_eType;
 }	
 
 int NSSpeedDirectionComponent::GetSpeed()

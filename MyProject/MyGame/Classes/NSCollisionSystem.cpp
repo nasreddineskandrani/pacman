@@ -45,14 +45,13 @@ void NSCollisionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities
 */
 
 /* collision by index */
-void NSCollisionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
+void NSCollisionSystem::Update(float p_fDelta, std::vector<NSEntity*>& p_lEntities)
 {
-	std::list<NSEntity*>::iterator itr;
-	for (itr = p_lEntities.begin(); itr != p_lEntities.end(); ++itr) 
+	for (int i = 0; i < p_lEntities.size(); ++i) 
 	{
-		NSSpeedDirectionComponent* pSpeedDirectionComponent = (NSSpeedDirectionComponent*)(*itr)->GetComponent("SPEED_DIRECTION");
-		NSMoveComponent* pMoveComponent = (NSMoveComponent*)(*itr)->GetComponent("MOVE");
-		NSMapIndexComponent* pMapIndexComponent = (NSMapIndexComponent*)(*itr)->GetComponent("MAP_INDEX");
+		NSSpeedDirectionComponent* pSpeedDirectionComponent = (NSSpeedDirectionComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eSpeedDirection);
+		NSMoveComponent* pMoveComponent = (NSMoveComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eMove);
+		NSMapIndexComponent* pMapIndexComponent = (NSMapIndexComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eMapIndex);
 		if (pSpeedDirectionComponent != NULL && pMoveComponent != NULL && pMapIndexComponent != NULL) 
 		{
 			//pMoveComponent->Update(p_fDelta, pSpeedDirectionComponent->GetDirectionX(), pSpeedDirectionComponent->GetDirectionY(), pSpeedDirectionComponent->GetSpeed(), nWantedIndexW, nWantedIndexH);
@@ -74,13 +73,12 @@ void NSCollisionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities
 			int nWantedIndexW = nDirectionX + pMapIndexComponent->GetIndexW();
 			int nWantedIndexH = nDirectionY + pMapIndexComponent->GetIndexH();
 			
-			std::list<NSEntity*>::iterator itrSearchCollision;
-			for (itrSearchCollision = p_lEntities.begin(); itrSearchCollision != p_lEntities.end(); ++itrSearchCollision) 
+			for (int j = 0; j < p_lEntities.size(); ++j) 
 			{
-				NSMapIndexComponent* pMapIndexComponent = (NSMapIndexComponent*)(*itrSearchCollision)->GetComponent("MAP_INDEX");
+				NSMapIndexComponent* pMapIndexComponent = (NSMapIndexComponent*)p_lEntities[j]->GetComponent(NSComponent::ComponentType::eType::eMapIndex);
 				if (pMapIndexComponent->GetIndexW() == nWantedIndexW && pMapIndexComponent->GetIndexH() == nWantedIndexH)
 				{
-					if ((*itrSearchCollision)->GetTypeName() == "WALL")
+					if (p_lEntities[j]->GetTypeName() == "WALL")
 					{
 						pSpeedDirectionComponent->SetCachedDirectionX(22);
 						pSpeedDirectionComponent->SetCachedDirectionY(22);
@@ -102,29 +100,28 @@ void NSCollisionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities
 	NSEntity* pTmpHero;
 
 	//get hero entity
-	for (itr = p_lEntities.begin(); itr != p_lEntities.end(); ++itr) 
+	for (int k = 0; k < p_lEntities.size(); ++k) 
 	{
-		if ((*itr)->GetTypeName() == "HERO")
+		if (p_lEntities[k]->GetTypeName() == "HERO")
 		{
-			pTmpHero = *itr;
+			pTmpHero = p_lEntities[k];
 			break;
 		}
 	}
 
 	//check collision between hero and world
-	itr = p_lEntities.begin();
-	for (++itr; itr != p_lEntities.end(); ++itr) 
+	for (int l = 0; l < p_lEntities.size(); ++l) 
 	{
-		NSBoundingBoxComponent* pBoundingBoxComponent = (NSBoundingBoxComponent*)(*itr)->GetComponent("BOUNDING_BOX");
+		NSBoundingBoxComponent* pBoundingBoxComponent = (NSBoundingBoxComponent*)p_lEntities[l]->GetComponent(NSComponent::ComponentType::eType::eBoundingBox);
 		if (pBoundingBoxComponent != NULL)
 		{
-			if ((*itr)->GetTypeName() == "PILL")
+			if (p_lEntities[l]->GetTypeName() == "PILL")
 			{
 				pBoundingBoxComponent->Update(p_fDelta);
-				((NSBoundingBoxComponent*)pTmpHero->GetComponent("BOUNDING_BOX"))->Update(p_fDelta);
-				if( ((NSBoundingBoxComponent*)pTmpHero->GetComponent("BOUNDING_BOX"))->GetBoundingBox().intersectsRect(pBoundingBoxComponent->GetBoundingBox()) ) 
+				((NSBoundingBoxComponent*)pTmpHero->GetComponent(NSComponent::ComponentType::eType::eBoundingBox))->Update(p_fDelta);
+				if( ((NSBoundingBoxComponent*)pTmpHero->GetComponent(NSComponent::ComponentType::eType::eBoundingBox))->GetBoundingBox().intersectsRect(pBoundingBoxComponent->GetBoundingBox()) ) 
 				{
-					NSMoveComponent* pMoveComponent = (NSMoveComponent*)(*itr)->GetComponent("MOVE");
+					NSMoveComponent* pMoveComponent = (NSMoveComponent*)p_lEntities[l]->GetComponent(NSComponent::ComponentType::eType::eMove);
 					pMoveComponent->GetSprite()->setVisible(false);
 				}
 			}

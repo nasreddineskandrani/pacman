@@ -14,7 +14,7 @@ public:
 	void Push(std::string p_sAction);
 	void Remove(std::string p_sAction);
 
-	std::string GetType();
+	NSComponent::ComponentType::eType GetType();
 private:
 	std::string m_currentAction;
 	std::list<std::string>* m_listQueuedActions; 

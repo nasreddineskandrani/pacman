@@ -42,7 +42,7 @@ private:
 	std::list<cocos2d::EventKeyboard::KeyCode>* m_pListPressedKey;
 	std::list<cocos2d::EventKeyboard::KeyCode>* m_pListReleasedKey;
 	std::vector<NSSystem*> m_vSystems;
-	std::list<NSEntity*> m_lEntities; 
+	std::vector<NSEntity*> m_lEntities; 
 };
 
 #endif // __GAME_SCENE_H__

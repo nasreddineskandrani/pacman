@@ -41,13 +41,13 @@ bool GameScene::init()
 	m_pListReleasedKey = new std::list<cocos2d::EventKeyboard::KeyCode>();
 
 	std::string sMap1 =		"111111111111111111111111" 
-							"100000000000000000000001" 
+							"1000ppppppppppppppppp001" 
 							"101111111111111111111101"
-							"100000000000000000000001"
+							"100000pppppppppppp000001"
 							"101111111111111111111101"
 							"100000000000000000000001"
 							"100000110011001100000001"
-							"100000100000000100000001"
+							"1000001000000001000p0001"
 							"100000111111111100000001"
 							"100000000000000000000001"
 							"101111111111111111111101"
@@ -112,7 +112,7 @@ bool GameScene::init()
 	NSEntity* pHero = NSEntityFactory::CreateHero(p_pSprite, 1, 5);
 	m_lEntities.push_back(pHero);
 
-	/*
+	
 	std::string sPathEnemy1 = "sprites/enemy1.png";
 	p_pSprite = CCSprite::create(sPathEnemy1);
 	addChild(p_pSprite);
@@ -140,7 +140,7 @@ bool GameScene::init()
 	NSEntity* pEnemy4 = NSEntityFactory::CreateEnemy(p_pSprite, 12, 8);
 	p_pSprite->setPosition((12*size) + size/2, (8*size) + size/2);
 	m_lEntities.push_back(pEnemy4);
-	*/
+	
 
 
 	////create Systems
@@ -156,7 +156,7 @@ bool GameScene::init()
 	NSSpeedDirectionSystem* pSpeedDirectionSystem = new NSSpeedDirectionSystem(); 
 	m_vSystems.push_back(pSpeedDirectionSystem);
 	NSCollisionSystem* pCollisionSystem= new NSCollisionSystem(); 
-	//m_vSystems.push_back(pCollisionSystem);
+	m_vSystems.push_back(pCollisionSystem);
 	NSMoveSystem* pMoveSystem = new NSMoveSystem(); 
 	m_vSystems.push_back(pMoveSystem);
 	
@@ -180,7 +180,7 @@ void GameScene::update(float delta)
 	{
 		m_vSystems[i]->Update(delta, m_lEntities);
 	}
-
+	
 	for(unsigned i = 0; i < m_vSystems.size( ); ++i)
 	{
 		m_vSystems[i]->Clear(delta, m_lEntities);

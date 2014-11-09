@@ -1,5 +1,5 @@
 #pragma once
-#include <list>
+#include <vector>
 #include "NSEntity.h"
 
 class NSSystem
@@ -9,7 +9,8 @@ public:
 
 	virtual void Init() = 0;
 	//virtual void SendMessage(int p_nMessage) = 0;
-	virtual void Update(float p_fDelta, std::list<NSEntity*>& objects) = 0;
 
-	virtual void Clear(float p_fDelta, std::list<NSEntity*>& p_lEntities) {}
+	virtual void Update(float p_fDelta, std::vector<NSEntity*>& p_lEntities) = 0;
+
+	virtual void Clear(float p_fDelta, std::vector<NSEntity*>& p_lEntities) {}
 };

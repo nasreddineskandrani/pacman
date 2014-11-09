@@ -11,15 +11,15 @@ class NSEntity
 public:
 	NSEntity();
 
-	NSComponent* GetComponent(std::string p_sId);
-	bool HasComponent(std::string p_sId);
+	NSComponent* GetComponent(NSComponent::ComponentType::eType p_sId);
+	bool HasComponent(NSComponent::ComponentType::eType p_sId);
 	void AddComponent(NSComponent* p_pComponent);
 	void RemoveComponent(NSComponent* p_pComponent);
 
 	inline std::string GetTypeName() { return m_sTypeName; };
-	inline void SetTypeName(std::string p_sTypeName) { m_sTypeName = p_sTypeName; };
+	inline void SetTypeName(const std::string& p_sTypeName) { m_sTypeName = p_sTypeName; };
  
 private:
-  std::map<std::string,NSComponent*> m_mapComponents;
+  std::vector<NSComponent*> m_vecComponents;
   std::string m_sTypeName;
 };

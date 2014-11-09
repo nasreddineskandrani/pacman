@@ -4,7 +4,7 @@ NSIAActionComponent::NSIAActionComponent()
 	: NSComponent()
 {
 	m_listQueuedActions = new std::list<std::string>();
-	m_sType = "IA_ACTION";
+	m_eType = ComponentType::eType::eIAAction;
 }
 
 std::string NSIAActionComponent::GetCurrentAction()
@@ -40,8 +40,8 @@ void NSIAActionComponent::Remove(std::string p_sAction)
 	*/
 }	
 
-std::string NSIAActionComponent::GetType()
+NSComponent::ComponentType::eType NSIAActionComponent::GetType()
 {
-	return m_sType;
+	return m_eType;
 }	
 

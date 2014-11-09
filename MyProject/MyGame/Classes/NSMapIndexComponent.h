@@ -17,7 +17,7 @@ public:
 	void SetIndexW(int value);
 	void SetIndexH(int value);
 
-	std::string GetType();
+	NSComponent::ComponentType::eType GetType();
 private:
 	int m_nIndexW, m_nIndexH;
 };

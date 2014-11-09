@@ -11,7 +11,7 @@ public:
 
 	void Update(float p_fDelta, std::string p_sAction);
 
-	std::string GetType();
+	NSComponent::ComponentType::eType GetType();
 
 	int GetSpeed();
 	int GetDirectionX();
@@ -24,5 +24,9 @@ public:
 	void SetCachedDirectionY(int);
 
 private:
-	int m_nSpeed, m_nDirectionX, m_nDirectionY, m_nCachedDirectionX, m_nCachedDirectionY;
+	int m_nSpeed;
+	int m_nDirectionX;
+	int m_nDirectionY;
+	int m_nCachedDirectionX;
+	int m_nCachedDirectionY;
 };

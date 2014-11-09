@@ -12,5 +12,5 @@ public:
 
 	void Init() {}
 	//void SendMessage(int p_nMessage) {}
-	void Update(float p_fDelta, std::list<NSEntity*>& p_lEntities);
+	void Update(float p_fDelta, std::vector<NSEntity*>& p_lEntities);
 };

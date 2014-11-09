@@ -4,7 +4,7 @@ NSRendererComponent::NSRendererComponent(CCSprite* p_pSprite)
 	: NSComponent()
 {
 	m_pSprite = p_pSprite;
-	m_sType = "RENDER";
+	m_eType = NSComponent::ComponentType::eType::eRenderer;
 }
 
 void NSRendererComponent::Update()
@@ -12,7 +12,7 @@ void NSRendererComponent::Update()
 	//m_pSprite->cocos2d::Node::draw();
 }	
 
-std::string NSRendererComponent::GetType()
+NSComponent::ComponentType::eType NSRendererComponent::GetType()
 {
-	return m_sType;
+	return m_eType;
 }	

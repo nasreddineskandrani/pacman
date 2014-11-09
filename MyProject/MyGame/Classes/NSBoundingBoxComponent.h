@@ -12,7 +12,7 @@ public:
 
 	void Update(float p_fDelta);
 
-	std::string GetType();
+	NSComponent::ComponentType::eType GetType();
 
 	CCRect GetBoundingBox();
 private:

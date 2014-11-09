@@ -12,9 +12,10 @@ public:
 
 	void Update(float p_fDelta, int p_nDirectionX, int p_nDirectionY, int p_nSpeed, int p_nWantedIndexW, int p_nWantedIndexH);
 
-	std::string GetType();
+	NSComponent::ComponentType::eType GetType();
 	CCSprite* GetSprite();
 private:
 	CCSprite* m_pSprite;
-	int p_nCachedDirectionX, p_nCachedDirectionY;
+	int p_nCachedDirectionX;
+	int p_nCachedDirectionY;
 };

@@ -6,7 +6,7 @@ NSMapIndexComponent::NSMapIndexComponent(int p_nIndexW, int p_nIndexH)
 	m_nIndexW = p_nIndexW;
 	m_nIndexH = p_nIndexH;
 
-	m_sType = "MAP_INDEX";
+	m_eType = NSComponent::ComponentType::eType::eMapIndex;
 }
 
 void NSMapIndexComponent::Update(float p_fDelta, std::string p_sAction)
@@ -34,8 +34,8 @@ void NSMapIndexComponent::SetIndexH(int value)
 	m_nIndexH = value;
 }	
 
-std::string NSMapIndexComponent::GetType()
+NSComponent::ComponentType::eType NSMapIndexComponent::GetType()
 {
-	return m_sType;
+	return m_eType;
 }	
 

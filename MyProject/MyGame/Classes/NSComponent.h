@@ -4,10 +4,24 @@
 class NSComponent
 {
 public:
+	struct ComponentType
+	{
+	  enum eType
+	  {
+		eSpeedDirection = 0,
+		eBoundingBox = 1,
+		eIAAction = 2,
+		eInputAction = 3,
+		eMapIndex = 4,
+		eMove = 5,
+		eRenderer = 6
+	  };
+	};
+
 	NSComponent() {}
 
-	virtual std::string GetType() = 0;
+	virtual ComponentType::eType GetType() = 0;
 
 protected:
-	std::string m_sType;
+	ComponentType::eType m_eType;
 };

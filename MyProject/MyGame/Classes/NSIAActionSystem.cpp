@@ -7,12 +7,11 @@ NSIAActionSystem::NSIAActionSystem()
 
 }
 
-void NSIAActionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities)
+void NSIAActionSystem::Update(float p_fDelta, std::vector<NSEntity*>& p_lEntities)
 {
-	std::list<NSEntity*>::iterator itr;
-	for (itr = p_lEntities.begin(); itr != p_lEntities.end(); ++itr) 
+	for (int i = 0; i < p_lEntities.size(); ++i) 
 	{
-		NSIAActionComponent* pIAActionComponent = (NSIAActionComponent*)(*itr)->GetComponent("IA_ACTION");
+		NSIAActionComponent* pIAActionComponent = (NSIAActionComponent*)p_lEntities[i]->GetComponent(NSComponent::ComponentType::eType::eIAAction);
 		if (pIAActionComponent != NULL) 
 		{
 			int nRandomInt = std::rand()%5;

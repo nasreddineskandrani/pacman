@@ -11,7 +11,7 @@ public:
 
 	void Update();
 
-	std::string GetType();
+	ComponentType::eType GetType();
 private:
 	CCSprite* m_pSprite;
 };

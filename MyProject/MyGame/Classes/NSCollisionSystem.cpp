@@ -87,13 +87,45 @@ void NSCollisionSystem::Update(float p_fDelta, std::list<NSEntity*>& p_lEntities
 						pSpeedDirectionComponent->SetDirectionX(0);
 						pSpeedDirectionComponent->SetDirectionY(0);
 					}
-					else 
+					/*else 
 					if ((*itrSearchCollision)->GetTypeName() == "PILL")
 					{
 						NSMoveComponent* pMoveComponent = (NSMoveComponent*)(*itrSearchCollision)->GetComponent("MOVE");
 						pMoveComponent->GetSprite()->setVisible(false);
-					}
+					}*/
 				
+				}
+			}
+		}
+	}
+
+	NSEntity* pTmpHero;
+
+	//get hero entity
+	for (itr = p_lEntities.begin(); itr != p_lEntities.end(); ++itr) 
+	{
+		if ((*itr)->GetTypeName() == "HERO")
+		{
+			pTmpHero = *itr;
+			break;
+		}
+	}
+
+	//check collision between hero and world
+	itr = p_lEntities.begin();
+	for (++itr; itr != p_lEntities.end(); ++itr) 
+	{
+		NSBoundingBoxComponent* pBoundingBoxComponent = (NSBoundingBoxComponent*)(*itr)->GetComponent("BOUNDING_BOX");
+		if (pBoundingBoxComponent != NULL)
+		{
+			if ((*itr)->GetTypeName() == "PILL")
+			{
+				pBoundingBoxComponent->Update(p_fDelta);
+				((NSBoundingBoxComponent*)pTmpHero->GetComponent("BOUNDING_BOX"))->Update(p_fDelta);
+				if( ((NSBoundingBoxComponent*)pTmpHero->GetComponent("BOUNDING_BOX"))->GetBoundingBox().intersectsRect(pBoundingBoxComponent->GetBoundingBox()) ) 
+				{
+					NSMoveComponent* pMoveComponent = (NSMoveComponent*)(*itr)->GetComponent("MOVE");
+					pMoveComponent->GetSprite()->setVisible(false);
 				}
 			}
 		}

@@ -79,19 +79,19 @@ NSEntity* NSEntityFactory::CreateEmpty(CCSprite* p_pSprite, int p_nIndexW, int p
 
 NSEntity* NSEntityFactory::CreatePill(CCSprite* p_pSprite, int p_nIndexW, int p_nIndexH)
 {
-	NSEntity* pEnemy = new NSEntity();
+	NSEntity* pPill = new NSEntity();
 	NSMapIndexComponent* pMapIndexComponent = new NSMapIndexComponent(p_nIndexW, p_nIndexH);
-	NSRendererComponent* pEnemyRendererComponent = new NSRendererComponent(p_pSprite);
-	NSInputActionComponent* pEnemyInputActionComponent = new NSInputActionComponent();
-	NSSpeedDirectionComponent* pEnemySpeedDirectionComponent = new NSSpeedDirectionComponent();
-	NSBoundingBoxComponent* pEnemyBoundingBoxComponent = new NSBoundingBoxComponent(p_pSprite);
-	NSMoveComponent* pEnemyMoveComponent = new NSMoveComponent(p_pSprite);
+	NSRendererComponent* pPillRendererComponent = new NSRendererComponent(p_pSprite);
+	NSInputActionComponent* pPillInputActionComponent = new NSInputActionComponent();
+	NSSpeedDirectionComponent* pPillSpeedDirectionComponent = new NSSpeedDirectionComponent();
+	NSBoundingBoxComponent* pPillBoundingBoxComponent = new NSBoundingBoxComponent(p_pSprite);
+	NSMoveComponent* pPillMoveComponent = new NSMoveComponent(p_pSprite);
 	//pEnemy->AddComponent(pEnemyRendererComponent);
-	pEnemy->AddComponent(pMapIndexComponent);
+	pPill->AddComponent(pMapIndexComponent);
 	//pEnemy->AddComponent(pEnemyInputActionComponent);
 	//pEnemy->AddComponent(pEnemySpeedDirectionComponent);
-	//pEnemy->AddComponent(pEnemyBoundingBoxComponent);
-	pEnemy->AddComponent(pEnemyMoveComponent);
-	pEnemy->SetTypeName("PILL");
-	return pEnemy;
+	pPill->AddComponent(pPillBoundingBoxComponent);
+	pPill->AddComponent(pPillMoveComponent);
+	pPill->SetTypeName("PILL");
+	return pPill;
 }

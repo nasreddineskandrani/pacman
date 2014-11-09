@@ -4,7 +4,7 @@ NSSpeedDirectionComponent::NSSpeedDirectionComponent()
 	: NSComponent()
 {
 	//m_nSpeed = +180+20;
-	m_nSpeed = +150;
+	m_nSpeed = +120;
 	m_nDirectionX = 0;
 	m_nDirectionY = 0;
 	m_nCachedDirectionX = 22;

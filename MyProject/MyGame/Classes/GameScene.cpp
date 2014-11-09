@@ -103,6 +103,7 @@ bool GameScene::init()
 		}
 	}
 
+
 	std::string sPathHero = "sprites/hero.png";
 	CCSprite* p_pSprite = CCSprite::create(sPathHero);
 	p_pSprite->setPosition((1*size) + size/2, (5*size) + size/2);
@@ -111,6 +112,7 @@ bool GameScene::init()
 	NSEntity* pHero = NSEntityFactory::CreateHero(p_pSprite, 1, 5);
 	m_lEntities.push_back(pHero);
 
+	/*
 	std::string sPathEnemy1 = "sprites/enemy1.png";
 	p_pSprite = CCSprite::create(sPathEnemy1);
 	addChild(p_pSprite);
@@ -138,7 +140,7 @@ bool GameScene::init()
 	NSEntity* pEnemy4 = NSEntityFactory::CreateEnemy(p_pSprite, 12, 8);
 	p_pSprite->setPosition((12*size) + size/2, (8*size) + size/2);
 	m_lEntities.push_back(pEnemy4);
-
+	*/
 
 
 	////create Systems
@@ -154,7 +156,7 @@ bool GameScene::init()
 	NSSpeedDirectionSystem* pSpeedDirectionSystem = new NSSpeedDirectionSystem(); 
 	m_vSystems.push_back(pSpeedDirectionSystem);
 	NSCollisionSystem* pCollisionSystem= new NSCollisionSystem(); 
-	m_vSystems.push_back(pCollisionSystem);
+	//m_vSystems.push_back(pCollisionSystem);
 	NSMoveSystem* pMoveSystem = new NSMoveSystem(); 
 	m_vSystems.push_back(pMoveSystem);
 	

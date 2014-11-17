@@ -9,6 +9,7 @@ NSEntity* NSEntityFactory::CreateHero(CCSprite* p_pSprite, int p_nIndexW, int p_
 	NSSpeedDirectionComponent* pSpeedDirectionComponent = new NSSpeedDirectionComponent();
 	NSBoundingBoxComponent* pBoundingBoxComponent= new NSBoundingBoxComponent(p_pSprite);
 	NSMoveComponent* pHeroMoveComponent = new NSMoveComponent(p_pSprite);
+	NSSoundComponent* pHeroSoundComponent = new NSSoundComponent();
 	pHero->AddComponent(pSpeedDirectionComponent);
 	pHero->AddComponent(pBoundingBoxComponent);
 	pHero->AddComponent(NULL);
@@ -16,6 +17,7 @@ NSEntity* NSEntityFactory::CreateHero(CCSprite* p_pSprite, int p_nIndexW, int p_
 	pHero->AddComponent(pMapIndexComponent);
 	pHero->AddComponent(pHeroMoveComponent);
 	pHero->AddComponent(NULL);
+	pHero->AddComponent(pHeroSoundComponent);
 	pHero->SetTypeName("HERO");
 	return pHero;
 }
@@ -37,6 +39,7 @@ NSEntity* NSEntityFactory::CreateEnemy(CCSprite* p_pSprite, int p_nIndexW, int p
 	pEnemy->AddComponent(pMapIndexComponent);
 	pEnemy->AddComponent(pEnemyMoveComponent);
 	pEnemy->AddComponent(NULL);
+	pEnemy->AddComponent(NULL);
 	pEnemy->SetTypeName("GHOST");
 	return pEnemy;
 }
@@ -56,6 +59,7 @@ NSEntity* NSEntityFactory::CreateWall(CCSprite* p_pSprite, int p_nIndexW, int p_
 	pEnemy->AddComponent(NULL);
 	pEnemy->AddComponent(NULL);
 	pEnemy->AddComponent(pMapIndexComponent);
+	pEnemy->AddComponent(NULL);
 	pEnemy->AddComponent(NULL);
 	pEnemy->AddComponent(NULL);
 	pEnemy->SetTypeName("WALL");
@@ -79,6 +83,7 @@ NSEntity* NSEntityFactory::CreateEmpty(CCSprite* p_pSprite, int p_nIndexW, int p
 	pEnemy->AddComponent(pMapIndexComponent);
 	pEnemy->AddComponent(NULL);
 	pEnemy->AddComponent(NULL);
+	pEnemy->AddComponent(NULL);
 	pEnemy->SetTypeName("EMPTY");
 	return pEnemy;
 }
@@ -99,6 +104,7 @@ NSEntity* NSEntityFactory::CreatePill(CCSprite* p_pSprite, int p_nIndexW, int p_
 	pEnemy->AddComponent(NULL);
 	pEnemy->AddComponent(pMapIndexComponent);
 	pEnemy->AddComponent(pEnemyMoveComponent);
+	pEnemy->AddComponent(NULL);
 	pEnemy->AddComponent(NULL);
 	pEnemy->SetTypeName("PILL");
 	return pEnemy;

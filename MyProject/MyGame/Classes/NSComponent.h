@@ -14,7 +14,8 @@ public:
 		eInputAction = 3,
 		eMapIndex = 4,
 		eMove = 5,
-		eRenderer = 6
+		eRenderer = 6,
+		eSound = 7
 	  };
 	};
 

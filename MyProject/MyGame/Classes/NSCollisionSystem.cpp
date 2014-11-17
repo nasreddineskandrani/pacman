@@ -3,7 +3,7 @@
 #include "NSBoundingBoxComponent.h"
 #include "NSSpeedDirectionComponent.h"
 #include "NSMapIndexComponent.h"
-
+#include "NSSoundComponent.h"
 #include<iostream>
 
 NSCollisionSystem::NSCollisionSystem()
@@ -121,8 +121,14 @@ void NSCollisionSystem::Update(float p_fDelta, std::vector<NSEntity*>& p_lEntiti
 				((NSBoundingBoxComponent*)pTmpHero->GetComponent(NSComponent::ComponentType::eType::eBoundingBox))->Update(p_fDelta);
 				if( ((NSBoundingBoxComponent*)pTmpHero->GetComponent(NSComponent::ComponentType::eType::eBoundingBox))->GetBoundingBox().intersectsRect(pBoundingBoxComponent->GetBoundingBox()) ) 
 				{
+					//collision hero / pill
 					NSMoveComponent* pMoveComponent = (NSMoveComponent*)p_lEntities[l]->GetComponent(NSComponent::ComponentType::eType::eMove);
-					pMoveComponent->GetSprite()->setVisible(false);
+					if (pMoveComponent->GetSprite()->isVisible())
+					{
+						pMoveComponent->GetSprite()->setVisible(false);
+						NSSoundComponent* pSoundComponent = (NSSoundComponent*)pTmpHero->GetComponent(NSComponent::ComponentType::eType::eSound);
+						pSoundComponent->SetCurrentSound("sounds/pacman_chomp.wav");
+					}
 				}
 			}
 		}

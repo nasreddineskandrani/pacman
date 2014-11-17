@@ -8,6 +8,7 @@
 #include "NSCollisionSystem.h"
 #include "NSMoveSystem.h"
 #include "NSIAActionSystem.h"
+#include "NSSoundSystem.h"
 //components
 #include "NSRendererComponent.h"
 #include "NSInputActionComponent.h"

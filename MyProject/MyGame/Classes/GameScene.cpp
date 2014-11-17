@@ -159,7 +159,9 @@ bool GameScene::init()
 	m_vSystems.push_back(pCollisionSystem);
 	NSMoveSystem* pMoveSystem = new NSMoveSystem(); 
 	m_vSystems.push_back(pMoveSystem);
-	
+	NSSoundSystem* pSoundSystem = new NSSoundSystem(); 
+	m_vSystems.push_back(pSoundSystem);
+
 	scheduleUpdate();
  }   
 
